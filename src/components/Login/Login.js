@@ -39,6 +39,7 @@ const Login = () => {
             id="floatingInput"
             value={email}
             placeholder="Email"
+            required
             onChange={({ target }) => setEmail(target.value)}
           />
           <label>Email address</label>
@@ -48,6 +49,7 @@ const Login = () => {
             type="password"
             className="form-control"
             id="floatingPassword"
+            required
             value={password}
             placeholder="Password"
             onChange={({ target }) => setPassword(target.value)}

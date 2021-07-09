@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-// import "./Login.css";
-import { Link } from "react-router-dom";
+import { Button, Form, Spinner } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 import { postData } from "../../api/ApiRequests";
 const Register = () => {
+  const history = useHistory();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,9 +13,12 @@ const Register = () => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [zip, setZip] = useState(0);
+  const [clicked, setClicked] = useState(false);
+  const [error, setError] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
+    setClicked(true);
     try {
       const { data } = await postData("/users/register", {
         name,
@@ -30,8 +33,12 @@ const Register = () => {
         isAdmin: false,
       });
       console.log(data);
+      setError("");
+      history.push("/login");
     } catch (error) {
       console.log(error.response);
+      setError(error.response.data.msg);
+      setClicked(false);
     }
   }
 
@@ -46,6 +53,7 @@ const Register = () => {
             placeholder="name@example.com"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
+            required
           />
           <label for="floatingInput">Email address</label>
         </div>
@@ -57,6 +65,7 @@ const Register = () => {
             placeholder="Password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
+            required
           />
           <label for="floatingPassword">Password</label>
         </div>
@@ -68,6 +77,7 @@ const Register = () => {
             placeholder="Name"
             value={name}
             onChange={({ target }) => setName(target.value)}
+            required
           />
           <label>Name</label>
         </div>
@@ -79,6 +89,7 @@ const Register = () => {
             placeholder="Phone"
             value={phone}
             onChange={({ target }) => setPhone(target.value)}
+            required
           />
           <label>Phone</label>
         </div>
@@ -90,6 +101,7 @@ const Register = () => {
             placeholder="Street"
             value={street}
             onChange={({ target }) => setStreet(target.value)}
+            required
           />
           <label>Street</label>
         </div>
@@ -101,6 +113,7 @@ const Register = () => {
             placeholder="Apartment"
             value={apartment}
             onChange={({ target }) => setApartment(target.value)}
+            required
           />
           <label>Apartment</label>
         </div>
@@ -112,6 +125,7 @@ const Register = () => {
             placeholder="Zip"
             value={zip}
             onChange={({ target }) => setZip(target.value)}
+            required
           />
           <label>Zip</label>
         </div>
@@ -123,6 +137,7 @@ const Register = () => {
             placeholder="City"
             value={city}
             onChange={({ target }) => setCity(target.value)}
+            required
           />
           <label>City</label>
         </div>
@@ -134,12 +149,27 @@ const Register = () => {
             placeholder="Country"
             value={country}
             onChange={({ target }) => setCountry(target.value)}
+            required
           />
           <label>Country</label>
         </div>
-        <Button variant="primary" className="my-3" type="submit">
-          Register
-        </Button>
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {!clicked ? (
+          <Button variant="primary" className="my-3" type="submit">
+            Register
+          </Button>
+        ) : (
+          <Button variant="primary" disabled className="my-3">
+            <Spinner
+              as="span"
+              animation="grow"
+              role="status"
+              aria-hidden="true"
+              size="sm"
+            />
+            Loading...
+          </Button>
+        )}
       </Form>
       <p className="text-center forgot-password">Forgot Password?</p>
       <Link to="/login">
