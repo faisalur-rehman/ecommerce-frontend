@@ -1,22 +1,9 @@
 .side_bar {
-  height: 100%;
-  width: 20%;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
+  height: 100vh;
+  width: 15vw;
   background: #b50b0b;
   transition: 0.5s;
   padding-top: 60px;
-}
-
-.side_bar .closebtn {
-  position: absolute;
-  top: 15px;
-  right: 25px;
-  font-size: 25px;
-  color: #ffff;
-  cursor: pointer;
 }
 
 .dashboard_buttons {
@@ -30,10 +17,10 @@
   text-decoration: none;
   color: #fff;
 }
-.dashboard_buttons .btn {
-  font-size: 18px;
+.types {
+  margin-left: 20px;
+  font-size: 1.3rem;
   margin-bottom: 15px;
-  cursor: pointer;
 }
 .dashboard_buttons #dashboard {
   font-size: 25px;
