@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
     console.log(email, password);
     try {
-      const data = await postData("/users", { email, password });
+      const { data } = await postData("/users/login", { email, password });
       console.log(data);
     } catch (error) {
       console.log(error.response);
@@ -28,6 +28,7 @@ const Login = () => {
             className="form-control"
             id="floatingInput"
             value={email}
+            placeholder="Email"
             onChange={({ target }) => setEmail(target.value)}
           />
           <label>Email address</label>
@@ -38,6 +39,7 @@ const Login = () => {
             className="form-control"
             id="floatingPassword"
             value={password}
+            placeholder="Password"
             onChange={({ target }) => setPassword(target.value)}
           />
           <label>Password</label>

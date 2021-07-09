@@ -1,0 +1,46 @@
+.side_bar {
+  height: 100%;
+  width: 20%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background: #b50b0b;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.side_bar .closebtn {
+  position: absolute;
+  top: 15px;
+  right: 25px;
+  font-size: 25px;
+  color: #ffff;
+  cursor: pointer;
+}
+
+.dashboard_buttons {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  color: #fff;
+  padding-left: 20px;
+}
+.dashboard_buttons a {
+  text-decoration: none;
+  color: #fff;
+}
+.dashboard_buttons .btn {
+  font-size: 18px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+.dashboard_buttons #dashboard {
+  font-size: 25px;
+  margin-bottom: 25px;
+  cursor: pointer;
+}
+.dashboard_buttons .active {
+  border-left: 2px solid white;
+  padding-left: 5px;
+}
