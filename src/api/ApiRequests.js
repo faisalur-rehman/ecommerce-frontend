@@ -75,3 +75,11 @@ export async function deleteData(endpoint, id, token) {
     },
   });
 }
+
+export async function deleteSingleCategory(endpoint) {
+  return api.put(`${endpoint}`, {
+    headers: {
+      authorization: localStorage.getItem("token"),
+    },
+  });
+}

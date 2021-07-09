@@ -4,10 +4,12 @@ import SideBar from "../Sidebar/Sidebar";
 import "./Categories.css";
 import { Button } from "react-bootstrap";
 import AddNew from "../Modals/AddNew";
+import DeleteCategory from "../Modals/DeleteCategory";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [addNewModal, setAddNewModal] = useState(false);
+  const [deleteCategory, setDeleteCategory] = useState(false);
   const [id, setId] = useState("");
   useEffect(() => {
     async function fetchData() {
@@ -26,7 +28,10 @@ const Categories = () => {
     setId(id);
     setAddNewModal(true);
   }
-
+  function handleDeleteModal(id) {
+    setId(id);
+    setDeleteCategory(true);
+  }
   return (
     <>
       <div className="categories">
@@ -40,13 +45,13 @@ const Categories = () => {
             </Button>
           </div>
           <table>
-            <tr>
-              <th>Color</th>
-              <th>Icon</th>
-              <th>Name</th>
-              <th></th>
-            </tr>
             <tbody>
+              <tr>
+                <th>Color</th>
+                <th>Icon</th>
+                <th>Name</th>
+                <th></th>
+              </tr>
               {categories.length > 0 &&
                 categories.map((category) => (
                   <tr key={category._id}>
@@ -55,10 +60,13 @@ const Categories = () => {
                     <td>{category.name}</td>
                     <td className="text-center">
                       <i
-                        class="fas fa-edit edit"
+                        className="fas fa-edit edit"
                         onClick={() => handleEditModal(category._id)}
                       ></i>
-                      <i class="fas fa-trash-alt delete"></i>
+                      <i
+                        className="fas fa-trash-alt delete"
+                        onClick={() => handleDeleteModal(category._id)}
+                      ></i>
                     </td>
                   </tr>
                 ))}
@@ -68,6 +76,11 @@ const Categories = () => {
       </div>
 
       <AddNew show={addNewModal} onHide={() => setAddNewModal(false)} id={id} />
+      <DeleteCategory
+        show={deleteCategory}
+        onHide={() => setDeleteCategory(false)}
+        id={id}
+      />
     </>
   );
 };
