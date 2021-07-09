@@ -11,6 +11,7 @@ const Categories = () => {
   const [addNewModal, setAddNewModal] = useState(false);
   const [deleteCategory, setDeleteCategory] = useState(false);
   const [id, setId] = useState("");
+
   useEffect(() => {
     async function fetchData() {
       try {
