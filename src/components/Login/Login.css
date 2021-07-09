@@ -1,0 +1,19 @@
+.register-here {
+  color: rgb(50, 141, 245);
+  text-align: center;
+  cursor: pointer;
+}
+.login-form {
+  width: 50%;
+  margin: 100px auto 10px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-form div {
+  width: 50%;
+}
+.login-form button {
+  width: 50%;
+}
