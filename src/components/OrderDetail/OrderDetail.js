@@ -47,7 +47,7 @@ const OrderDetail = () => {
               <tr>
                 <td>{new Date(orderDetail.dateOrdered).toDateString()}</td>
                 <td>{orderDetail.status}</td>
-                <td>{orderDetail.totalPrice}</td>
+                <td>${orderDetail.totalPrice}</td>
                 <td>{orderDetail.user ? orderDetail.user.name : "null"}</td>
                 <td>
                   {orderDetail.orderItems && (

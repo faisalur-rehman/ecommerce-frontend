@@ -81,7 +81,7 @@ const Orders = () => {
                 >
                   <td>{new Date(order.dateOrdered).toDateString()}</td>
                   <td>{order.status}</td>
-                  <td>{order.totalPrice}</td>
+                  <td>${order.totalPrice}</td>
                   <td>{order.user ? order.user._id : "null"}</td>
                   <td>
                     <ol>
