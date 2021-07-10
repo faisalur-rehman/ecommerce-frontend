@@ -3,9 +3,11 @@ import SideBar from "../Sidebar/Sidebar";
 import { Button } from "react-bootstrap";
 import { formGetData } from "../../api/ApiRequests";
 import { useHistory } from "react-router-dom";
+import NewProduct from "../Modals/NewProduct";
 
 const Products = () => {
   const history = useHistory();
+  const [newProduct, setNewProduct] = useState(false);
 
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -15,20 +17,6 @@ const Products = () => {
           data: { payload },
         } = await formGetData("/products");
         setProducts(payload);
-      } catch (error) {
-        console.log(error.response);
-      }
-    }
-    fetchData();
-  }, []);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const { data } = await formGetData(
-          "/products/608831be320d13123cb9f7bb"
-        );
-        // setProducts(payload);
-        console.log(data);
       } catch (error) {
         console.log(error.response);
       }
@@ -50,7 +38,11 @@ const Products = () => {
       </div>
       <div className="category-listing">
         <div className="add-new">
-          <Button variant="primary" className="my-3">
+          <Button
+            variant="primary"
+            className="my-3"
+            onClick={() => setNewProduct(true)}
+          >
             Add New
           </Button>
         </div>
@@ -81,6 +73,7 @@ const Products = () => {
           </tbody>
         </table>
       </div>
+      <NewProduct show={newProduct} onHide={() => setNewProduct(false)} />
     </div>
   );
 };

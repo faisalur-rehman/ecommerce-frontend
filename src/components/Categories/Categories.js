@@ -5,7 +5,7 @@ import "./Categories.css";
 import { Button } from "react-bootstrap";
 import EditCategory from "../Modals/EditCategory";
 import DeleteCategory from "../Modals/DeleteCategory";
-import AddNew from "../Modals/AddNew";
+import AddNew from "../Modals/NewCategory";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);

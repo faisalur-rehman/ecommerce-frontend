@@ -24,7 +24,6 @@ const Profile = () => {
           `/users/${localStorage.getItem("userId")}`,
           localStorage.getItem("token")
         );
-        console.log("profile", payload);
         setName(payload.name);
         setStreet(payload.street);
         setEmail(payload.email);
