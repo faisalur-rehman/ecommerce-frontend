@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import SideBar from "../Sidebar/Sidebar";
 import { formGetData } from "../../api/ApiRequests";
 import { Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const history = useHistory();
   useEffect(() => {
     async function fetchData() {
       try {
@@ -18,6 +20,15 @@ const Orders = () => {
     }
     fetchData();
   }, []);
+
+  function handleOrder(id, status) {
+    console.log(id, status);
+    history.push({
+      pathname: `/order-details`,
+      state: { data: { id, status } },
+    });
+  }
+
   console.log(orders);
   return (
     <div className="categories">
@@ -41,7 +52,11 @@ const Orders = () => {
             </tr>
             {orders.length > 0 &&
               orders.map((order) => (
-                <tr key={order._id}>
+                <tr
+                  key={order._id}
+                  onClick={() => handleOrder(order._id, order.status)}
+                  style={{ cursor: "pointer" }}
+                >
                   <td>{order.dateOrdered}</td>
                   <td>{order.status}</td>
                   <td>{order.totalPrice}</td>

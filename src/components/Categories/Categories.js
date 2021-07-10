@@ -81,6 +81,7 @@ const Categories = () => {
         show={deleteCategory}
         onHide={() => setDeleteCategory(false)}
         id={id}
+        endpoint="categories"
       />
     </>
   );

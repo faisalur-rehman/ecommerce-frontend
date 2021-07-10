@@ -6,20 +6,22 @@ import Categories from "./components/Categories/Categories";
 import Products from "./components/Products/Products";
 import Orders from "./components/Orders/Orders";
 import Customers from "./components/Customers/Customers";
+import OrderDetail from "./components/OrderDetail/OrderDetail";
 
 function App() {
+  console.log("hello");
   return (
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/login">
+          <Route exact path="/">
+            <Sidebar />
+          </Route>
+          <Route path="/login">
             <Login />
           </Route>
           <Route path="/register">
             <Register />
-          </Route>
-          <Route path="/dashboard">
-            <Sidebar />
           </Route>
           <Route path="/categories">
             <Categories />
@@ -32,6 +34,9 @@ function App() {
           </Route>
           <Route path="/customers">
             <Customers />
+          </Route>
+          <Route path="/order-details">
+            <OrderDetail />
           </Route>
         </Switch>
       </Router>

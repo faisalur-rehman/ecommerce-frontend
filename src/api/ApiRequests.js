@@ -76,10 +76,21 @@ export async function deleteData(endpoint, id, token) {
   });
 }
 
-export async function deleteSingleCategory(endpoint) {
-  return api.put(`${endpoint}`, {
+export async function deleteItem(endpoint) {
+  return api.delete(`${endpoint}`, {
     headers: {
       authorization: localStorage.getItem("token"),
     },
   });
+}
+export async function checkDetails(endpoint, data) {
+  return api.put(
+    `${endpoint}`,
+    { ...data },
+    {
+      headers: {
+        authorization: localStorage.getItem("token"),
+      },
+    }
+  );
 }

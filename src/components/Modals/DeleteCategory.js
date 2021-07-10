@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Modal.css";
 import { Button, Modal, Spinner } from "react-bootstrap";
-import { deleteSingleCategory } from "../../api/ApiRequests";
+import { deleteItem } from "../../api/ApiRequests";
 
 const DeleteCategory = (props) => {
   const [clicked, setClicked] = useState(false);
@@ -10,7 +10,7 @@ const DeleteCategory = (props) => {
   async function deleteCategory() {
     setClicked(true);
     try {
-      const data = await deleteSingleCategory(`/categories/${props.id}`);
+      const data = await deleteItem(`/${props.endpoint}/${props.id}`);
       console.log(data);
       setError("");
     } catch (error) {
@@ -29,7 +29,7 @@ const DeleteCategory = (props) => {
           centered
         >
           <Modal.Body>
-            <p>Are you sure you want to delete this Category?</p>
+            <p>Are you sure you want to delete this?</p>
             {error && <p style={{ color: "red" }}>{error}</p>}
             {!clicked ? (
               <>
