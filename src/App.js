@@ -7,6 +7,7 @@ import Products from "./components/Products/Products";
 import Orders from "./components/Orders/Orders";
 import Customers from "./components/Customers/Customers";
 import OrderDetail from "./components/OrderDetail/OrderDetail";
+import ProductDetail from "./components/Products/ProductDetails";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/order-details">
             <OrderDetail />
+          </Route>
+          <Route path="/product-details">
+            <ProductDetail />
           </Route>
         </Switch>
       </Router>

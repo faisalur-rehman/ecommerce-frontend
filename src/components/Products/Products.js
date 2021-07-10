@@ -2,8 +2,11 @@ import React, { useEffect, useState } from "react";
 import SideBar from "../Sidebar/Sidebar";
 import { Button } from "react-bootstrap";
 import { formGetData } from "../../api/ApiRequests";
+import { useHistory } from "react-router-dom";
 
 const Products = () => {
+  const history = useHistory();
+
   const [products, setProducts] = useState([]);
   useEffect(() => {
     async function fetchData() {
@@ -18,6 +21,27 @@ const Products = () => {
     }
     fetchData();
   }, []);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await formGetData(
+          "/products/608831be320d13123cb9f7bb"
+        );
+        // setProducts(payload);
+        console.log(data);
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
+    fetchData();
+  }, []);
+
+  function handleProduct(id) {
+    history.push({
+      pathname: `/product-details`,
+      state: { data: { id } },
+    });
+  }
 
   return (
     <div className="categories">
@@ -30,10 +54,7 @@ const Products = () => {
             Add New
           </Button>
         </div>
-        {/* <div className="totalOrders">
-          <p>Total Orders: {orders.length}</p>
-          <p>Your orders Count: {userOrders.length}</p>
-        </div> */}
+
         <table>
           <tbody>
             <tr>
@@ -47,7 +68,7 @@ const Products = () => {
               products.map((product) => (
                 <tr
                   key={product._id}
-                  // onClick={() => handleOrder(order._id, order.status)}
+                  onClick={() => handleProduct(product._id)}
                   style={{ cursor: "pointer" }}
                 >
                   <td>{product.brand}</td>
