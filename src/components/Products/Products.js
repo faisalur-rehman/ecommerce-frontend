@@ -73,7 +73,7 @@ const Products = () => {
                 >
                   <td>{product.brand}</td>
                   <td>{product.name}</td>
-                  <td>{product.category.name}</td>
+                  <td>{product.category && product.category.name}</td>
                   <td>${product.price}</td>
                   <td>{product.rating} Star</td>
                 </tr>

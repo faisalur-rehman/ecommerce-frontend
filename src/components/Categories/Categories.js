@@ -3,12 +3,14 @@ import { formGetData } from "../../api/ApiRequests";
 import SideBar from "../Sidebar/Sidebar";
 import "./Categories.css";
 import { Button } from "react-bootstrap";
-import AddNew from "../Modals/AddNew";
+import EditCategory from "../Modals/EditCategory";
 import DeleteCategory from "../Modals/DeleteCategory";
+import AddNew from "../Modals/AddNew";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
   const [addNewModal, setAddNewModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
   const [deleteCategory, setDeleteCategory] = useState(false);
   const [id, setId] = useState("");
 
@@ -27,7 +29,7 @@ const Categories = () => {
 
   function handleEditModal(id) {
     setId(id);
-    setAddNewModal(true);
+    setEditModal(true);
   }
   function handleDeleteModal(id) {
     setId(id);
@@ -41,7 +43,11 @@ const Categories = () => {
         </div>
         <div className="category-listing">
           <div className="add-new">
-            <Button variant="primary" className="my-3">
+            <Button
+              variant="primary"
+              className="my-3"
+              onClick={() => setAddNewModal(true)}
+            >
               Add New
             </Button>
           </div>
@@ -76,13 +82,18 @@ const Categories = () => {
         </div>
       </div>
 
-      <AddNew show={addNewModal} onHide={() => setAddNewModal(false)} id={id} />
+      <EditCategory
+        show={editModal}
+        onHide={() => setEditModal(false)}
+        id={id}
+      />
       <DeleteCategory
         show={deleteCategory}
         onHide={() => setDeleteCategory(false)}
         id={id}
         endpoint="categories"
       />
+      <AddNew show={addNewModal} onHide={() => setAddNewModal(false)} />
     </>
   );
 };

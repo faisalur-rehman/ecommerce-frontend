@@ -1,15 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Modal.css";
 import { Form, Button, Modal, Spinner } from "react-bootstrap";
+import { formGetData } from "../../api/ApiRequests";
 import axios from "axios";
 
-const AddNew = (props) => {
+const EditCategory = (props) => {
   const [name, setName] = useState("");
   const [color, setColor] = useState("");
   const [icon, setIcon] = useState();
   const [clicked, setClicked] = useState(false);
   const [error, setError] = useState("");
   const [response, setResponse] = useState("");
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const {
+          data: { payload },
+        } = await formGetData(`/categories/${props.id}`);
+        // console.log(payload);
+        setName(payload.name);
+        setColor(payload.color);
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
+    fetchData();
+  }, [props.id]);
 
   function handleIconSubmit(e) {
     setIcon(e.target.files[0]);
@@ -24,8 +41,8 @@ const AddNew = (props) => {
     setClicked(true);
 
     try {
-      const data = await axios.post(
-        `http://localhost:5000/api/v1/categories`,
+      const data = await axios.put(
+        `http://localhost:5000/api/v1/categories/${props.id}`,
         { ...formData },
         {
           headers: {
@@ -113,4 +130,4 @@ const AddNew = (props) => {
   );
 };
 
-export default AddNew;
+export default EditCategory;
