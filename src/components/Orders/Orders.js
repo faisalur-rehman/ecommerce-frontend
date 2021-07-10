@@ -79,7 +79,7 @@ const Orders = () => {
                   onClick={() => handleOrder(order._id, order.status)}
                   style={{ cursor: "pointer" }}
                 >
-                  <td>{order.dateOrdered}</td>
+                  <td>{new Date(order.dateOrdered).toDateString()}</td>
                   <td>{order.status}</td>
                   <td>{order.totalPrice}</td>
                   <td>{order.user ? order.user._id : "null"}</td>
