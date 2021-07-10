@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [userOrders, setUserOrders] = useState([]);
+
   const history = useHistory();
   useEffect(() => {
     async function fetchData() {
@@ -14,6 +16,22 @@ const Orders = () => {
           data: { payload },
         } = await formGetData("/orders");
         setOrders(payload);
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
+    fetchData();
+  }, []);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const {
+          data: { payload },
+        } = await formGetData(
+          `/orders/get/userorders/${localStorage.getItem("userId")}`
+        );
+        setUserOrders(payload);
+        // console.log("usercount", data);
       } catch (error) {
         console.log(error.response);
       }
@@ -41,6 +59,10 @@ const Orders = () => {
             Add New
           </Button>
         </div>
+        <div className="totalOrders">
+          <p>Total Orders: {orders.length}</p>
+          <p>Your orders Count: {userOrders.length}</p>
+        </div>
         <table>
           <tbody>
             <tr>
@@ -61,21 +83,13 @@ const Orders = () => {
                   <td>{order.status}</td>
                   <td>{order.totalPrice}</td>
                   <td>{order.user ? order.user._id : "null"}</td>
-                  <ol>
-                    {order.orderItems.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ol>
-                  {/* <td className="text-center">
-                    <i
-                      className="fas fa-edit edit"
-                      // onClick={() => handleEditModal(category._id)}
-                    ></i>
-                    <i
-                      className="fas fa-trash-alt delete"
-                      // onClick={() => handleDeleteModal(category._id)}
-                    ></i>
-                  </td> */}
+                  <td>
+                    <ol>
+                      {order.orderItems.map((item) => (
+                        <li key={item}>{item}</li>
+                      ))}
+                    </ol>
+                  </td>
                 </tr>
               ))}
           </tbody>

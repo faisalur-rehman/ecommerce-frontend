@@ -9,7 +9,6 @@ import Customers from "./components/Customers/Customers";
 import OrderDetail from "./components/OrderDetail/OrderDetail";
 
 function App() {
-  console.log("hello");
   return (
     <div className="App">
       <Router>

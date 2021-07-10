@@ -15,7 +15,6 @@ const DeleteCategory = (props) => {
       setError("");
     } catch (error) {
       console.log(error.response);
-      // setError(error.response.data.msg);
       setClicked(false);
     }
   }

@@ -7,7 +7,7 @@ const SideBar = () => {
     <>
       <section className="side_bar">
         <div className="dashboard_buttons" id="change_active">
-          <Link className="types" id="dashboard">
+          <Link className="types" id="dashboard" to="/">
             <span>Dashboard</span>
           </Link>
           <Link className="types" to="/categories">

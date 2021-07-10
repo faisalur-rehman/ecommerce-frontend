@@ -20,8 +20,9 @@ const Login = () => {
       console.log(data);
 
       localStorage.setItem("token", data.token);
+      localStorage.setItem("userId", data.userDetails._id);
       setError("");
-      history.push("/dashboard");
+      history.push("/");
     } catch (error) {
       console.log(error.response);
       setError(error.response.data.msg);
