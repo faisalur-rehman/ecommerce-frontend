@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SideBar from "../Sidebar/Sidebar";
 import { formGetData } from "../../api/ApiRequests";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 
 const Orders = () => {
@@ -54,11 +54,6 @@ const Orders = () => {
         <SideBar />
       </div>
       <div className="category-listing">
-        <div className="add-new">
-          <Button variant="primary" className="my-3">
-            Add New
-          </Button>
-        </div>
         <div className="totalOrders">
           <p>Total Orders: {orders.length}</p>
           <p>Your orders Count: {userOrders.length}</p>

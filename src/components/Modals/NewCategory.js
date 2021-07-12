@@ -26,11 +26,11 @@ const AddNew = (props) => {
     try {
       const data = await axios.post(
         `http://localhost:5000/api/v1/categories`,
-        { ...formData },
+        formData,
         {
           headers: {
-            authorization: localStorage.getItem("token"),
-            "Content-Type": `multipart/form-data`,
+            Accept: "application/json",
+            "Content-Type": "multipart/form-data",
           },
         }
       );
